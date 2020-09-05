@@ -4,7 +4,6 @@ namespace Chess
 {
     public enum ChessPieceType
     {
-        Empty,
         Pawn,
         Knight,
         Bishop,

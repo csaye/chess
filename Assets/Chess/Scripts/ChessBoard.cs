@@ -7,7 +7,7 @@ namespace Chess
         [Header("References")]
         [SerializeField] private GameObject moveHighlight = null;
 
-        private ChessPieceType[,] chessBoard = new ChessPieceType[8, 8];
+        private ChessPiece[,] chessBoard = new ChessPiece[8, 8];
 
         private ChessPiece clickedPiece;
 
@@ -20,9 +20,9 @@ namespace Chess
             moveHighlightTransform = transform.GetChild(1).transform;
         }
 
-        private ChessPieceType GetChessPiece(Vector2Int position)
+        public void InitializeChessPiece(ChessPiece piece)
         {
-            return chessBoard[position.x, position.y];
+            SetPiece(piece);
         }
 
         public void ClickChessPiece(ChessPiece piece)
@@ -33,13 +33,36 @@ namespace Chess
             HighlightMovableSquares(piece);
         }
 
+        private ChessPiece GetPiece(Vector2Int position)
+        {
+            return chessBoard[position.x, position.y];
+        }
+
+        private void RemovePiece(ChessPiece piece)
+        {
+            chessBoard[piece.position.x, piece.position.y] = null;
+        }
+
+        private void SetPiece(ChessPiece piece)
+        {
+            chessBoard[piece.position.x, piece.position.y] = piece;
+        }
+
         private void HighlightMovableSquares(ChessPiece piece)
         {
             foreach (Vector2Int move in piece.GetMoves())
             {
                 Vector2Int movePosition = piece.position + move;
-                if (IsEmpty(movePosition)) HighlightSquare(movePosition);
+                if (IsValidMove(piece, movePosition)) HighlightSquare(movePosition);
             }
+        }
+
+        private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
+        {
+            if (!IsEmpty(movePosition)) return false;
+            if (piece.type == ChessPieceType.Knight) return true;
+            Debug.Log("TODO IsValidMove");
+            return true;
         }
 
         private void HighlightSquare(Vector2Int position)
@@ -52,7 +75,9 @@ namespace Chess
             if (!pieceClicked) return;
             pieceClicked = false;
             ClearAllHighlight();
+            RemovePiece(clickedPiece);
             clickedPiece.position = position;
+            SetPiece(clickedPiece);
         }
 
         private void ClearAllHighlight()
@@ -68,7 +93,7 @@ namespace Chess
         private bool IsEmpty(Vector2Int position)
         {
             if (IsOutOfBounds(position)) return false;
-            return GetChessPiece(position) == ChessPieceType.Empty;
+            return GetPiece(position) == null;
         }
 
         private bool IsOutOfBounds(Vector2Int position)

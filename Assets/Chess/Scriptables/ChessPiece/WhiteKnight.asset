@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914b450ebe615411d99ad16c3abced59, type: 3}
   m_Name: WhiteKnight
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   team: 0
   moveScriptable: {fileID: 11400000, guid: 1c9dffe1d58bc43e882c48462d6a6e50, type: 2}

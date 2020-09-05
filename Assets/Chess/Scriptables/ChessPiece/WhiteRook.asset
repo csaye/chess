@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914b450ebe615411d99ad16c3abced59, type: 3}
   m_Name: WhiteRook
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
   team: 0
   moveScriptable: {fileID: 11400000, guid: 8764f9bf62c0e43e3bd79d5a39ce4fb7, type: 2}

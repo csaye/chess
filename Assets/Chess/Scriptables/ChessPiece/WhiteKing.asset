@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914b450ebe615411d99ad16c3abced59, type: 3}
   m_Name: WhiteKing
   m_EditorClassIdentifier: 
-  type: 6
+  type: 5
   team: 0
   moveScriptable: {fileID: 11400000, guid: af72bf65345d846f1b25def8e969e1de, type: 2}

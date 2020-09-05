@@ -7,7 +7,10 @@ namespace Chess
         [Header("Attributes")]
         public ChessPieceScriptable scriptable;
 
-        private ChessBoard _chessBoard;
+        private ChessBoard chessBoard;
+
+        public ChessPieceType type { get { return scriptable.type; } }
+        public ChessPieceTeam team { get { return scriptable.team; } }
 
         public Vector2Int position
         {
@@ -23,17 +26,27 @@ namespace Chess
             }
         }
 
+        private void Start()
+        {
+            chessBoard = FindObjectOfType<ChessBoard>();
+            chessBoard.InitializeChessPiece(this);
+        }
+
         public Vector2Int[] GetMoves()
         {
+            if (type == ChessPieceType.Pawn) return PawnMoves();
             return scriptable.moveScriptable.moves;
         }
 
-        private ChessBoard chessBoard
+        private Vector2Int[] PawnMoves()
         {
-            get
+            if (team == ChessPieceTeam.White)
             {
-                if (_chessBoard == null) _chessBoard = FindObjectOfType<ChessBoard>();
-                return _chessBoard;
+                return new Vector2Int[] { Vector2Int.up };
+            }
+            else
+            {
+                return new Vector2Int[] { Vector2Int.down };
             }
         }
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914b450ebe615411d99ad16c3abced59, type: 3}
   m_Name: WhitePawn
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   team: 0
   moveScriptable: {fileID: 11400000, guid: 3e969c711fe924dad8349f3fba8288e5, type: 2}
