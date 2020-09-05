@@ -200,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
 --- !u!4 &61254215 stripped
@@ -375,6 +380,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 2127577628008316689, guid: 1d7b914a750354908a8dec433f9e143c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2127577628008316690, guid: 1d7b914a750354908a8dec433f9e143c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -516,6 +526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
@@ -691,6 +706,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357998418742014006, guid: 194fd338046884341b3615385b73cd08,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194fd338046884341b3615385b73cd08, type: 3}
@@ -1019,6 +1039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteQueen
       objectReference: {fileID: 0}
+    - target: {fileID: 8424457181135012505, guid: 37addd13fe34340e2913c2b7b27c9825,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8424457181135012506, guid: 37addd13fe34340e2913c2b7b27c9825,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1093,6 +1118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackBishop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302970566063959948, guid: d1ca9db67260d40e1941df2f47a1b11e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7302970566063959951, guid: d1ca9db67260d40e1941df2f47a1b11e,
         type: 3}
@@ -1223,6 +1253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
@@ -1428,6 +1463,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackQueen
       objectReference: {fileID: 0}
+    - target: {fileID: 3444037977233431392, guid: 6834d81d357a3498894ab479ae68f13c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3444037977233431395, guid: 6834d81d357a3498894ab479ae68f13c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1557,6 +1597,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
@@ -1867,6 +1912,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhitePawn
       objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
 --- !u!4 &970506606 stripped
@@ -1965,6 +2015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhitePawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
@@ -2222,6 +2277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteRook
       objectReference: {fileID: 0}
+    - target: {fileID: 4461275153466509442, guid: db92315ba3aaf4b7caff99076b8678e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db92315ba3aaf4b7caff99076b8678e4, type: 3}
 --- !u!4 &1260260106 stripped
@@ -2296,6 +2356,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhitePawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
@@ -2372,6 +2437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
 --- !u!4 &1272220652 stripped
@@ -2447,6 +2517,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 6357998418742014006, guid: 194fd338046884341b3615385b73cd08,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194fd338046884341b3615385b73cd08, type: 3}
 --- !u!4 &1277144934 stripped
@@ -2466,6 +2541,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackBishop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302970566063959948, guid: d1ca9db67260d40e1941df2f47a1b11e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7302970566063959951, guid: d1ca9db67260d40e1941df2f47a1b11e,
         type: 3}
@@ -2666,6 +2746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhitePawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
@@ -2892,6 +2977,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhitePawn
       objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
 --- !u!4 &1545084410 stripped
@@ -2967,6 +3057,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteBishop
       objectReference: {fileID: 0}
+    - target: {fileID: 4239401655553570995, guid: 552d737e80dce4793b4b6715b1c1a1dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552d737e80dce4793b4b6715b1c1a1dd, type: 3}
 --- !u!4 &1629878880 stripped
@@ -3041,6 +3136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
@@ -3146,6 +3246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackRook
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610273654200149347, guid: 6a2a2aeef7f294bf5bdc9dedba385b07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2a2aeef7f294bf5bdc9dedba385b07, type: 3}
@@ -3318,6 +3423,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackRook
       objectReference: {fileID: 0}
+    - target: {fileID: 3610273654200149347, guid: 6a2a2aeef7f294bf5bdc9dedba385b07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2a2aeef7f294bf5bdc9dedba385b07, type: 3}
 --- !u!4 &1793300259 stripped
@@ -3337,6 +3447,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhiteKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127577628008316689, guid: 1d7b914a750354908a8dec433f9e143c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2127577628008316690, guid: 1d7b914a750354908a8dec433f9e143c,
         type: 3}
@@ -3468,6 +3583,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteRook
       objectReference: {fileID: 0}
+    - target: {fileID: 4461275153466509442, guid: db92315ba3aaf4b7caff99076b8678e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db92315ba3aaf4b7caff99076b8678e4, type: 3}
 --- !u!4 &1938715034 stripped
@@ -3542,6 +3662,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhitePawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
@@ -3664,6 +3789,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}
 --- !u!4 &1986458171 stripped
@@ -3738,6 +3868,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WhitePawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017330916358778546, guid: 3f94f5c0050c9413a817efcd9758c3b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f94f5c0050c9413a817efcd9758c3b1, type: 3}
@@ -3814,6 +3949,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhiteBishop
       objectReference: {fileID: 0}
+    - target: {fileID: 4239401655553570995, guid: 552d737e80dce4793b4b6715b1c1a1dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552d737e80dce4793b4b6715b1c1a1dd, type: 3}
 --- !u!4 &2023249380 stripped
@@ -3888,6 +4028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlackPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892690676767575591, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 749dc4c4f9a4e4e3ab043b6358ce6e28, type: 3}

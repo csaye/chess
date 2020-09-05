@@ -35,7 +35,6 @@ namespace Chess
         {
             if (pieceClicked) return;
             if (isGameOver) return;
-            if (GetValidMoves(piece).Length == 0) return;
             pieceClicked = true;
             clickedPiece = piece;
             HighlightMovableSquares(piece);
@@ -59,16 +58,18 @@ namespace Chess
 
         private void HighlightMovableSquares(ChessPiece piece)
         {
-            foreach (Vector2Int move in GetValidMoves(piece)) HighlightSquare(move);
+            Vector2Int[] validMoves = GetValidMoves(piece, true);
+            if (validMoves.Length == 0) pieceClicked = false;
+            foreach (Vector2Int move in validMoves) HighlightSquare(move);
         }
 
-        public Vector2Int[] GetValidMoves(ChessPiece piece)
+        public Vector2Int[] GetValidMoves(ChessPiece piece, bool checkPrevention)
         {
             List<Vector2Int> validMoves = new List<Vector2Int>();
             foreach (Vector2Int move in piece.GetMoves())
             {
                 Vector2Int movePosition = piece.position + move;
-                if (IsValidMove(piece, movePosition))
+                if (IsValidMove(piece, movePosition, checkPrevention))
                 {
                     validMoves.Add(movePosition);
                 }
@@ -76,10 +77,10 @@ namespace Chess
             return validMoves.ToArray();
         }
 
-        private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
+        private bool IsValidMove(ChessPiece piece, Vector2Int movePosition, bool checkPrevention)
         {
             if (!IsEmpty(movePosition) && !IsOpposingPieceAtPosition(piece, movePosition)) return false;
-            if (MoveResultsInCheck(piece, movePosition)) return false;
+            if (checkPrevention && MoveResultsInCheck(piece, movePosition)) return false;
             if (piece.type == ChessPieceType.Knight) return true;
             if (piece.position.x == movePosition.x || piece.position.y == movePosition.y)
             {
@@ -94,8 +95,11 @@ namespace Chess
         private bool MoveResultsInCheck(ChessPiece piece, Vector2Int position)
         {
             ChessPiece previousPiece = GetPiece(position);
+            Vector2Int previousPosition = piece.position;
             SetPiece(position, piece);
+            SetPiece(previousPosition, null);
             bool resultsInCheck = IsInCheck(piece.team);
+            SetPiece(previousPosition, piece);
             SetPiece(position, previousPiece);
             return resultsInCheck;
         }
@@ -190,17 +194,22 @@ namespace Chess
             }
             foreach (ChessPiece opposingPiece in opposingPieces)
             {
-                if (GetValidMoves(opposingPiece).Contains(kingPosition)) return true;
+                if (GetValidMoves(opposingPiece, false).Contains(kingPosition)) return true;
             }
             return false;
         }
 
         private Vector2Int GetKingPosition(ChessPieceTeam team)
         {
-            foreach (ChessPiece piece in chessBoard)
+            for (int x = 0; x < 8; x++)
             {
-                if (piece == null) continue;
-                if (piece.type == ChessPieceType.King && piece.team == team) return piece.position;
+                for (int y = 0; y < 8; y++)
+                {
+                    Vector2Int position = new Vector2Int(x, y);
+                    ChessPiece piece = GetPiece(position);
+                    if (piece == null) continue;
+                    if (piece.type == ChessPieceType.King && piece.team == team) return position;
+                }
             }
             return new Vector2Int(-1, -1);
         }
