@@ -50,18 +50,70 @@ namespace Chess
 
         private void HighlightMovableSquares(ChessPiece piece)
         {
+            bool highlighted = false;
             foreach (Vector2Int move in piece.GetMoves())
             {
                 Vector2Int movePosition = piece.position + move;
-                if (IsValidMove(piece, movePosition)) HighlightSquare(movePosition);
+                if (IsValidMove(piece, movePosition))
+                {
+                    highlighted = true;
+                    HighlightSquare(movePosition);
+                }
             }
+            if (!highlighted) pieceClicked = false;
         }
 
         private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
         {
             if (!IsEmpty(movePosition)) return false;
             if (piece.type == ChessPieceType.Knight) return true;
-            Debug.Log("TODO IsValidMove");
+            if (piece.position.x == movePosition.x || piece.position.y == movePosition.y)
+            {
+                return IsValidStraightMove(piece.position, movePosition);
+            }
+            else
+            {
+                return IsValidDiagonalMove(piece.position, movePosition);
+            }
+        }
+
+        private bool IsValidStraightMove(Vector2Int init, Vector2Int goal)
+        {
+            Vector2Int direction;
+            if (init.x == goal.x)
+            {
+                direction = init.y < goal.y ? Vector2Int.up : Vector2Int.down;
+            }
+            else
+            {
+                direction = init.x < goal.x ? Vector2Int.right : Vector2Int.left;
+            }
+            Vector2Int pointer = init + direction;
+            while (pointer != goal)
+            {
+                if (!IsEmpty(pointer)) return false;
+                pointer += direction;
+            }
+            return true;
+        }
+
+        private bool IsValidDiagonalMove(Vector2Int init, Vector2Int goal)
+        {
+            Vector2Int direction;
+            if (init.x < goal.x)
+            {
+                direction = init.y < goal.y ? new Vector2Int(1, 1) : new Vector2Int(1, -1);
+            }
+            else
+            {
+                direction = init.y < goal.y ? new Vector2Int(-1, 1) : new Vector2Int(-1, -1);
+            }
+            Vector2Int pointer = init + direction;
+            while (pointer != goal)
+            {
+                if (!IsEmpty(pointer)) return false;
+                pointer += direction;
+            }
             return true;
         }
 
@@ -77,6 +129,7 @@ namespace Chess
             ClearAllHighlight();
             RemovePiece(clickedPiece);
             clickedPiece.position = position;
+            clickedPiece.hasMoved = true;
             SetPiece(clickedPiece);
         }
 
