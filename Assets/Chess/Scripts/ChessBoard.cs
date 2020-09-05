@@ -35,6 +35,7 @@ namespace Chess
 
         private ChessPiece GetPiece(Vector2Int position)
         {
+            if (IsOutOfBounds(position)) return null;
             return chessBoard[position.x, position.y];
         }
 
@@ -65,7 +66,7 @@ namespace Chess
 
         private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
         {
-            if (!IsEmpty(movePosition)) return false;
+            if (!IsEmpty(movePosition) && !IsOpposingPieceAtPosition(piece, movePosition)) return false;
             if (piece.type == ChessPieceType.Knight) return true;
             if (piece.position.x == movePosition.x || piece.position.y == movePosition.y)
             {
@@ -75,6 +76,12 @@ namespace Chess
             {
                 return IsValidDiagonalMove(piece.position, movePosition);
             }
+        }
+
+        private bool IsOpposingPieceAtPosition(ChessPiece piece, Vector2Int position)
+        {
+            if (GetPiece(position) == null) return false;
+            return GetPiece(position).team != piece.team;
         }
 
         private bool IsValidStraightMove(Vector2Int init, Vector2Int goal)
@@ -128,6 +135,7 @@ namespace Chess
             pieceClicked = false;
             ClearAllHighlight();
             RemovePiece(clickedPiece);
+            if (GetPiece(position) != null) Destroy(GetPiece(position).gameObject);
             clickedPiece.position = position;
             clickedPiece.hasMoved = true;
             SetPiece(clickedPiece);

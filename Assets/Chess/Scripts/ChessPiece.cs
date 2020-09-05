@@ -47,9 +47,8 @@ namespace Chess
                 if (hasMoved) return new Vector2Int[] { Vector2Int.up };
                 return new Vector2Int[]
                 {
-                    new Vector2Int(-1, 1),
                     new Vector2Int(0, 1),
-                    new Vector2Int(1, 1)
+                    new Vector2Int(0, 2),
                 };
             }
             else
@@ -57,9 +56,8 @@ namespace Chess
                 if (hasMoved) return new Vector2Int[] { Vector2Int.down };
                 return new Vector2Int[]
                 {
-                    new Vector2Int(-1, -1),
                     new Vector2Int(0, -1),
-                    new Vector2Int(1, -1)
+                    new Vector2Int(0, -2)
                 };
             }
         }
