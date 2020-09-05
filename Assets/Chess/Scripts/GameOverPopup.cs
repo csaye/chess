@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Chess
@@ -8,20 +9,22 @@ namespace Chess
         [Header("References")]
         [SerializeField] private CanvasGroup canvasGroup = null;
         [SerializeField] private TextMeshProUGUI winnerText = null;
+        [SerializeField] private GameObject playAgainButton = null;
 
-        public void ActivateGameOver(ChessPieceTeam winner)
+        public void ActivateGameOver(ChessPieceTeam loser)
         {
             canvasGroup.alpha = 0.75f;
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
-            if (winner == ChessPieceTeam.White)
-            {
-                winnerText.text = "White won";
-            }
-            else
+            if (loser == ChessPieceTeam.White)
             {
                 winnerText.text = "Black won";
             }
+            else
+            {
+                winnerText.text = "White won";
+            }
+            playAgainButton.SetActive(true);
         }
     }
 }

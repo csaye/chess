@@ -227,7 +227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &126113714
 RectTransform:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 878322371
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &340838902
@@ -1799,6 +1799,7 @@ MonoBehaviour:
   moveHighlight: {fileID: 3841056633346577386, guid: cfb378cef6a0b4772b72b16186d81fec,
     type: 3}
   chessAI: {fileID: 735929882}
+  gameOverPopup: {fileID: 1103963337}
 --- !u!1001 &970506605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,6 +2066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1103963338}
   winnerText: {fileID: 401463443}
+  playAgainButton: {fileID: 126113713}
 --- !u!225 &1103963338
 CanvasGroup:
   m_ObjectHideFlags: 0

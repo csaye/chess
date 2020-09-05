@@ -9,6 +9,9 @@ namespace Chess
         [Header("References")]
         [SerializeField] private GameObject moveHighlight = null;
         [SerializeField] private ChessAI chessAI = null;
+        [SerializeField] private GameOverPopup gameOverPopup = null;
+
+        public bool isGameOver {get; private set;} = false;
 
         private ChessPiece[,] chessBoard = new ChessPiece[8, 8];
 
@@ -25,12 +28,14 @@ namespace Chess
 
         public void InitializePiece(ChessPiece piece)
         {
-            SetPiece(piece);
+            SetPiece(piece.position, piece);
         }
 
         public void ClickPiece(ChessPiece piece)
         {
             if (pieceClicked) return;
+            if (isGameOver) return;
+            if (GetValidMoves(piece).Length == 0) return;
             pieceClicked = true;
             clickedPiece = piece;
             HighlightMovableSquares(piece);
@@ -47,16 +52,14 @@ namespace Chess
             chessBoard[piece.position.x, piece.position.y] = null;
         }
 
-        private void SetPiece(ChessPiece piece)
+        private void SetPiece(Vector2Int position, ChessPiece piece)
         {
-            chessBoard[piece.position.x, piece.position.y] = piece;
+            chessBoard[position.x, position.y] = piece;
         }
 
         private void HighlightMovableSquares(ChessPiece piece)
         {
-            Vector2Int[] validMoves = GetValidMoves(piece);
-            if (validMoves.Length == 0) pieceClicked = false;
-            foreach (Vector2Int move in validMoves) HighlightSquare(move);
+            foreach (Vector2Int move in GetValidMoves(piece)) HighlightSquare(move);
         }
 
         public Vector2Int[] GetValidMoves(ChessPiece piece)
@@ -76,6 +79,7 @@ namespace Chess
         private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
         {
             if (!IsEmpty(movePosition) && !IsOpposingPieceAtPosition(piece, movePosition)) return false;
+            if (MoveResultsInCheck(piece, movePosition)) return false;
             if (piece.type == ChessPieceType.Knight) return true;
             if (piece.position.x == movePosition.x || piece.position.y == movePosition.y)
             {
@@ -85,6 +89,15 @@ namespace Chess
             {
                 return IsValidDiagonalMove(piece.position, movePosition);
             }
+        }
+
+        private bool MoveResultsInCheck(ChessPiece piece, Vector2Int position)
+        {
+            ChessPiece previousPiece = GetPiece(position);
+            SetPiece(position, piece);
+            bool resultsInCheck = IsInCheck(piece.team);
+            SetPiece(position, previousPiece);
+            return resultsInCheck;
         }
 
         public bool IsOpposingPieceAtPosition(ChessPiece piece, Vector2Int position)
@@ -150,6 +163,7 @@ namespace Chess
             ClearAllHighlight();
             MovePiece(clickedPiece, position);
             CheckCheckmateOfTeam(ChessPieceTeam.Black);
+            if (isGameOver) return;
             chessAI.TakeTurn();
             CheckCheckmateOfTeam(ChessPieceTeam.White);
         }
@@ -157,7 +171,9 @@ namespace Chess
         public void CheckCheckmateOfTeam(ChessPieceTeam team)
         {
             if (!IsInCheck(team)) return;
-            GameOverPopup;
+            // check for checkmate not check
+            isGameOver = true;
+            gameOverPopup.ActivateGameOver(team);
         }
 
         private bool IsInCheck(ChessPieceTeam team)
@@ -183,6 +199,7 @@ namespace Chess
         {
             foreach (ChessPiece piece in chessBoard)
             {
+                if (piece == null) continue;
                 if (piece.type == ChessPieceType.King && piece.team == team) return piece.position;
             }
             return new Vector2Int(-1, -1);
@@ -204,7 +221,7 @@ namespace Chess
             if (GetPiece(position) != null) Destroy(GetPiece(position).gameObject);
             piece.position = position;
             piece.hasMoved = true;
-            SetPiece(piece);
+            SetPiece(position, piece);
         }
 
         private void ClearAllHighlight()

@@ -70,8 +70,7 @@ namespace Chess
 
         private void OnClick()
         {
-            if (team != ChessPieceTeam.White) return;
-            chessBoard.ClickPiece(this);
+            if (team == ChessPieceTeam.White) chessBoard.ClickPiece(this);
         }
     }
 }
