@@ -2,30 +2,18 @@
 
 namespace Chess
 {
-    public class ChessPiece : MonoBehaviour
+    public class MoveHighlight : MonoBehaviour
     {
-        [Header("Attributes")]
-        public ChessPieceScriptable scriptable;
-
         private ChessBoard _chessBoard;
 
-        public Vector2Int position
+        private Vector2Int position
         {
             get
             {
-                int x = Mathf.RoundToInt(transform.localPosition.x);
-                int y = Mathf.RoundToInt(transform.localPosition.y);
+                int x = Mathf.RoundToInt(transform.position.x + 3.5f);
+                int y = Mathf.RoundToInt(transform.position.y + 3.5f);
                 return new Vector2Int(x, y);
             }
-            set
-            {
-                transform.localPosition = (Vector3Int)value;
-            }
-        }
-
-        public Vector2Int[] GetMoves()
-        {
-            return scriptable.moveScriptable.moves;
         }
 
         private ChessBoard chessBoard
@@ -44,7 +32,7 @@ namespace Chess
 
         private void OnClick()
         {
-            chessBoard.ClickChessPiece(this);
+            chessBoard.ChooseMovePosition(position);
         }
     }
 }
