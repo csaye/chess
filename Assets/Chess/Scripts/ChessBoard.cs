@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace Chess
         [SerializeField] private GameObject moveHighlight = null;
         [SerializeField] private ChessAI chessAI = null;
         [SerializeField] private GameOverPopup gameOverPopup = null;
+        [SerializeField] private TextMeshProUGUI checkIndicator = null;
 
         public bool isGameOver {get; private set;} = false;
 
@@ -33,8 +36,13 @@ namespace Chess
 
         public void ClickPiece(ChessPiece piece)
         {
-            if (pieceClicked) return;
             if (isGameOver) return;
+            ClearAllHighlight();
+            if (pieceClicked && clickedPiece == piece)
+            {
+                pieceClicked = false;
+                return;
+            }
             pieceClicked = true;
             clickedPiece = piece;
             HighlightMovableSquares(piece);
@@ -184,7 +192,16 @@ namespace Chess
 
         private bool IsInCheckmate(ChessPieceTeam team)
         {
-            if (!IsInCheck(team)) return false;
+            if (!IsInCheck(team))
+            {
+                if (team == ChessPieceTeam.White && checkIndicator.text == "White is in check") checkIndicator.text = "";
+                if (team == ChessPieceTeam.Black && checkIndicator.text == "Black is in check") checkIndicator.text = "";
+                return false;
+            }
+            else
+            {
+                checkIndicator.text = (team == ChessPieceTeam.White) ? "White is in check" : "Black is in check";
+            }
             foreach (ChessPiece piece in GetAllPiecesOfTeam(team))
             {
                 if (GetValidMoves(piece, true).Length > 0) return false;
@@ -239,10 +256,21 @@ namespace Chess
         public void MovePiece(ChessPiece piece, Vector2Int position)
         {
             RemovePiece(piece);
-            if (GetPiece(position) != null) Destroy(GetPiece(position).gameObject);
-            piece.position = position;
             piece.hasMoved = true;
-            SetPiece(position, piece);
+            StartCoroutine(LerpPiece(piece, position));
+        }
+
+        private IEnumerator LerpPiece(ChessPiece piece, Vector2Int goal)
+        {
+            Vector2 init = piece.position;
+            for (float i = 0; i < 1; i += 0.01f)
+            {
+                piece.transform.localPosition = ((1 - i) * init) + (i * (Vector2)goal);
+                yield return null;
+            }
+            piece.position = goal;
+            if (GetPiece(goal) != null) Destroy(GetPiece(goal).gameObject);
+            SetPiece(goal, piece);
         }
 
         private void ClearAllHighlight()
