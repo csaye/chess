@@ -2,7 +2,7 @@
 
 namespace Chess
 {
-    enum ChessPieceType
+    public enum ChessPieceType
     {
         None,
         Pawn,
@@ -13,7 +13,7 @@ namespace Chess
         King
     }
 
-    enum ChessPieceTeam
+    public enum ChessPieceTeam
     {
         White,
         Black
@@ -22,10 +22,10 @@ namespace Chess
     [CreateAssetMenuAttribute(fileName = "ChessPiece", menuName = "Scriptables/ChessPiece")]
     public class ChessPieceScriptable : ScriptableObject
     {
-        [Header("Chess Piece Attributes")]
-        [SerializeField] private ChessPieceType type;
-        [SerializeField] private ChessPieceTeam team;
-        [SerializeField] private Sprite sprite;
-        [SerializeField] private Vector2Int[] possibleMoves;
+        [Header("Attributes")]
+        public ChessPieceType type;
+        public ChessPieceTeam team;
+        public Sprite sprite;
+        public ChessPieceMovesScriptable moves;
     }
 }
