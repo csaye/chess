@@ -2,20 +2,9 @@
 
 namespace Chess
 {
-    enum Piece
+    public class ChessPiece : MonoBehaviour
     {
-        None,
-        Pawn,
-        Knight,
-        Bishop,
-        Rook,
-        Queen,
-        King
-    }
-
-    public abstract class ChessPiece : MonoBehaviour
-    {
-        [Header("Attributes")]
-        [SerializeField] private ChessPieceScriptable scriptable = null;
+        // [Header("Attributes")]
+        // [SerializeField] private ChessPieceScriptable scriptable = null;
     }
 }

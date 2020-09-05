@@ -4,14 +4,14 @@ namespace Chess
 {
     public class ChessBoard : MonoBehaviour
     {
-        private Piece[,] chessBoard = new Piece[8, 8];
+        private ChessPieceType[,] chessBoard = new ChessPieceType[8, 8];
 
-        private Piece GetChessPiece(int x, int y)
+        private ChessPieceType GetChessPiece(int x, int y)
         {
             return chessBoard[x, y];
         }
 
-        private void SetChessPiece(int x, int y, Piece chessPiece)
+        private void SetChessPiece(int x, int y, ChessPieceType chessPiece)
         {
             chessBoard[x, y] = chessPiece;
         }
