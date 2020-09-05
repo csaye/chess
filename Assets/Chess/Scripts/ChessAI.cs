@@ -17,7 +17,7 @@ namespace Chess
                 if (validMoves.Length == 0) continue;
                 foreach (Vector2Int move in validMoves)
                 {
-                    if (chessBoard.IsPieceAtPosition(move))
+                    if (chessBoard.IsPieceAtPosition(move) && chessBoard.GetPiece(move).type != ChessPieceType.King)
                     {
                         chessBoard.MovePiece(piece, move);
                         return;
@@ -28,8 +28,12 @@ namespace Chess
             {
                 Vector2Int[] validMoves = chessBoard.GetValidMoves(piece, true);
                 if (validMoves.Length == 0) continue;
-                chessBoard.MovePiece(piece, validMoves[Random.Range(0, validMoves.Length)]);
-                return;
+                foreach (Vector2Int move in RandomMoves(validMoves))
+                {
+                    if (chessBoard.IsPieceAtPosition(move) && chessBoard.GetPiece(move).type == ChessPieceType.King) continue;
+                    chessBoard.MovePiece(piece, move);
+                    return;
+                }
             }
         }
 
@@ -40,20 +44,34 @@ namespace Chess
             {
                 if (piece != null) randomChessPieces.Add(piece);
             }
-            for (int i = 0; i < chessPieces.Length; i++)
+            ChessPiece[] randomPieces = randomChessPieces.ToArray();
+            for (int i = 0; i < randomPieces.Length; i++)
             {
-                int randomIndexA = Random.Range(0, randomChessPieces.Count);
-                int randomIndexB = Random.Range(0, randomChessPieces.Count);
-                Swap(randomIndexA, randomIndexB, randomChessPieces);
+                int randomIndexA = Random.Range(0, randomPieces.Length);
+                int randomIndexB = Random.Range(0, randomPieces.Length);
+                randomPieces = Swap(randomIndexA, randomIndexB, randomPieces);
             }
-            return randomChessPieces.ToArray();
+            return randomPieces;
         }
 
-        private void Swap<T>(int indexA, int indexB, List<T> list)
+        private Vector2Int[] RandomMoves(Vector2Int[] moves)
         {
-            T temp = list[indexA];
-            list[indexA] = list[indexB];
-            list[indexB] = temp;
+            for (int i = 0; i < moves.Length; i++)
+            {
+                int randomIndexA = Random.Range(0, moves.Length);
+                int randomIndexB = Random.Range(0, moves.Length);
+                moves = Swap(randomIndexA, randomIndexB, moves);
+            }
+            return moves;
+        }
+
+        private T[] Swap<T>(int indexA, int indexB, T[] array)
+        {
+            T[] newArray = array;
+            T temp = newArray[indexA];
+            newArray[indexA] = newArray[indexB];
+            newArray[indexB] = temp;
+            return newArray;
         }
     }
 }

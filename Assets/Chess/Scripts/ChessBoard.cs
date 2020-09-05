@@ -40,7 +40,7 @@ namespace Chess
             HighlightMovableSquares(piece);
         }
 
-        private ChessPiece GetPiece(Vector2Int position)
+        public ChessPiece GetPiece(Vector2Int position)
         {
             if (IsOutOfBounds(position)) return null;
             return chessBoard[position.x, position.y];
@@ -157,6 +157,7 @@ namespace Chess
 
         private void HighlightSquare(Vector2Int position)
         {
+            if (GetPiece(position) != null && GetPiece(position).type == ChessPieceType.King) return;
             Instantiate(moveHighlight, PieceToHighlightPosition(position), Quaternion.identity, moveHighlightTransform);
         }
 
