@@ -4,7 +4,7 @@ namespace Chess
 {
     public enum ChessPieceType
     {
-        None,
+        Empty,
         Pawn,
         Knight,
         Bishop,
@@ -25,7 +25,6 @@ namespace Chess
         [Header("Attributes")]
         public ChessPieceType type;
         public ChessPieceTeam team;
-        public Sprite sprite;
-        public ChessPieceMovesScriptable moves;
+        public ChessPieceMovesScriptable moveScriptable;
     }
 }

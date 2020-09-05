@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   team: 0
-  sprite: {fileID: 0}
-  moves: {fileID: 0}
+  moveScriptable: {fileID: 11400000, guid: 8764f9bf62c0e43e3bd79d5a39ce4fb7, type: 2}
