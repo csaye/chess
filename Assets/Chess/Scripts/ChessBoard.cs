@@ -172,12 +172,23 @@ namespace Chess
             CheckCheckmateOfTeam(ChessPieceTeam.White);
         }
 
-        public void CheckCheckmateOfTeam(ChessPieceTeam team)
+        private void CheckCheckmateOfTeam(ChessPieceTeam team)
         {
-            if (!IsInCheck(team)) return;
-            // check for checkmate not check
-            isGameOver = true;
-            gameOverPopup.ActivateGameOver(team);
+            if (IsInCheckmate(team))
+            {
+                isGameOver = true;
+                gameOverPopup.ActivateGameOver(team);
+            }
+        }
+
+        private bool IsInCheckmate(ChessPieceTeam team)
+        {
+            if (!IsInCheck(team)) return false;
+            foreach (ChessPiece piece in GetAllPiecesOfTeam(team))
+            {
+                if (GetValidMoves(piece, true).Length > 0) return false;
+            }
+            return true;
         }
 
         private bool IsInCheck(ChessPieceTeam team)

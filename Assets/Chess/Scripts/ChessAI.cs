@@ -6,18 +6,31 @@ namespace Chess
     public class ChessAI : MonoBehaviour
     {
         [Header("References")]
-        // [SerializeField] private ChessBoard chessBoard = null;
+        [SerializeField] private ChessBoard chessBoard = null;
         [SerializeField] private ChessPiece[] chessPieces = new ChessPiece[16];
 
         public void TakeTurn()
         {
-            // foreach (ChessPiece piece in RandomChessPieces())
-            // {
-            //     Vector2Int[] validMoves = chessBoard.GetValidMoves(piece, true);
-            //     if (validMoves.Length == 0) continue;
-            //     chessBoard.MovePiece(piece, validMoves[Random.Range(0, validMoves.Length)]);
-            //     return;
-            // }
+            foreach (ChessPiece piece in RandomChessPieces())
+            {
+                Vector2Int[] validMoves = chessBoard.GetValidMoves(piece, true);
+                if (validMoves.Length == 0) continue;
+                foreach (Vector2Int move in validMoves)
+                {
+                    if (chessBoard.IsPieceAtPosition(move))
+                    {
+                        chessBoard.MovePiece(piece, move);
+                        return;
+                    }
+                }
+            }
+            foreach (ChessPiece piece in RandomChessPieces())
+            {
+                Vector2Int[] validMoves = chessBoard.GetValidMoves(piece, true);
+                if (validMoves.Length == 0) continue;
+                chessBoard.MovePiece(piece, validMoves[Random.Range(0, validMoves.Length)]);
+                return;
+            }
         }
 
         private ChessPiece[] RandomChessPieces()
