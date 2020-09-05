@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Chess
 {
@@ -6,6 +7,7 @@ namespace Chess
     {
         [Header("References")]
         [SerializeField] private GameObject moveHighlight = null;
+        [SerializeField] private ChessAI chessAI = null;
 
         private ChessPiece[,] chessBoard = new ChessPiece[8, 8];
 
@@ -51,17 +53,23 @@ namespace Chess
 
         private void HighlightMovableSquares(ChessPiece piece)
         {
-            bool highlighted = false;
+            Vector2Int[] validMoves = GetValidMoves(piece);
+            if (validMoves.Length == 0) pieceClicked = false;
+            foreach (Vector2Int move in validMoves) HighlightSquare(move);
+        }
+
+        public Vector2Int[] GetValidMoves(ChessPiece piece)
+        {
+            List<Vector2Int> validMoves = new List<Vector2Int>();
             foreach (Vector2Int move in piece.GetMoves())
             {
                 Vector2Int movePosition = piece.position + move;
                 if (IsValidMove(piece, movePosition))
                 {
-                    highlighted = true;
-                    HighlightSquare(movePosition);
+                    validMoves.Add(movePosition);
                 }
             }
-            if (!highlighted) pieceClicked = false;
+            return validMoves.ToArray();
         }
 
         private bool IsValidMove(ChessPiece piece, Vector2Int movePosition)
@@ -78,10 +86,15 @@ namespace Chess
             }
         }
 
-        private bool IsOpposingPieceAtPosition(ChessPiece piece, Vector2Int position)
+        public bool IsOpposingPieceAtPosition(ChessPiece piece, Vector2Int position)
         {
             if (GetPiece(position) == null) return false;
             return GetPiece(position).team != piece.team;
+        }
+
+        public bool IsPieceAtPosition(Vector2Int position)
+        {
+            return GetPiece(position) != null;
         }
 
         private bool IsValidStraightMove(Vector2Int init, Vector2Int goal)
@@ -134,11 +147,17 @@ namespace Chess
             if (!pieceClicked) return;
             pieceClicked = false;
             ClearAllHighlight();
-            RemovePiece(clickedPiece);
+            MovePiece(clickedPiece, position);
+            chessAI.TakeTurn();
+        }
+
+        public void MovePiece(ChessPiece piece, Vector2Int position)
+        {
+            RemovePiece(piece);
             if (GetPiece(position) != null) Destroy(GetPiece(position).gameObject);
-            clickedPiece.position = position;
-            clickedPiece.hasMoved = true;
-            SetPiece(clickedPiece);
+            piece.position = position;
+            piece.hasMoved = true;
+            SetPiece(piece);
         }
 
         private void ClearAllHighlight()
