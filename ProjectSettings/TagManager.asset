@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1327810585
+    locked: 0
+  - name: ChessBoard
+    uniqueID: 3672522193
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
