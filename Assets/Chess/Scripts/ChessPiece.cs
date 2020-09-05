@@ -32,7 +32,7 @@ namespace Chess
         private void Start()
         {
             chessBoard = FindObjectOfType<ChessBoard>();
-            chessBoard.InitializeChessPiece(this);
+            chessBoard.InitializePiece(this);
         }
 
         public Vector2Int[] GetMoves()
@@ -71,7 +71,7 @@ namespace Chess
         private void OnClick()
         {
             if (team != ChessPieceTeam.White) return;
-            chessBoard.ClickChessPiece(this);
+            chessBoard.ClickPiece(this);
         }
     }
 }

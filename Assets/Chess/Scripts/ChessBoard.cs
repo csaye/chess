@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Chess
@@ -22,12 +23,12 @@ namespace Chess
             moveHighlightTransform = transform.GetChild(1).transform;
         }
 
-        public void InitializeChessPiece(ChessPiece piece)
+        public void InitializePiece(ChessPiece piece)
         {
             SetPiece(piece);
         }
 
-        public void ClickChessPiece(ChessPiece piece)
+        public void ClickPiece(ChessPiece piece)
         {
             if (pieceClicked) return;
             pieceClicked = true;
@@ -148,7 +149,53 @@ namespace Chess
             pieceClicked = false;
             ClearAllHighlight();
             MovePiece(clickedPiece, position);
+            CheckCheckmateOfTeam(ChessPieceTeam.Black);
             chessAI.TakeTurn();
+            CheckCheckmateOfTeam(ChessPieceTeam.White);
+        }
+
+        public void CheckCheckmateOfTeam(ChessPieceTeam team)
+        {
+            if (!IsInCheck(team)) return;
+            GameOverPopup;
+        }
+
+        private bool IsInCheck(ChessPieceTeam team)
+        {
+            Vector2Int kingPosition = GetKingPosition(team);
+            ChessPiece[] opposingPieces;
+            if (team == ChessPieceTeam.White)
+            {
+                opposingPieces = GetAllPiecesOfTeam(ChessPieceTeam.Black);
+            }
+            else
+            {
+                opposingPieces = GetAllPiecesOfTeam(ChessPieceTeam.White);
+            }
+            foreach (ChessPiece opposingPiece in opposingPieces)
+            {
+                if (GetValidMoves(opposingPiece).Contains(kingPosition)) return true;
+            }
+            return false;
+        }
+
+        private Vector2Int GetKingPosition(ChessPieceTeam team)
+        {
+            foreach (ChessPiece piece in chessBoard)
+            {
+                if (piece.type == ChessPieceType.King && piece.team == team) return piece.position;
+            }
+            return new Vector2Int(-1, -1);
+        }
+
+        private ChessPiece[] GetAllPiecesOfTeam(ChessPieceTeam team)
+        {
+            List<ChessPiece> pieces = new List<ChessPiece>();
+            foreach (ChessPiece piece in chessBoard)
+            {
+                if (piece != null && piece.team == team) pieces.Add(piece);
+            }
+            return pieces.ToArray();
         }
 
         public void MovePiece(ChessPiece piece, Vector2Int position)
