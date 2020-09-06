@@ -185,22 +185,27 @@ namespace Chess
         {
             while (isPieceMoving) yield return null;
             yield return null;
-            CheckCheckmateOfTeam(ChessPieceTeam.Black);
+            CheckCheckmate();
             if (!isGameOver)
             {
                 chessAI.TakeTurn();
                 while (isPieceMoving) yield return null;
                 yield return null;
-                CheckCheckmateOfTeam(ChessPieceTeam.White);
+                CheckCheckmate();
             }
         }
 
-        private void CheckCheckmateOfTeam(ChessPieceTeam team)
+        private void CheckCheckmate()
         {
-            if (IsInCheckmate(team))
+            if (IsInCheckmate(ChessPieceTeam.White))
             {
                 isGameOver = true;
-                gameOverPopup.ActivateGameOver(team);
+                gameOverPopup.ActivateGameOver(ChessPieceTeam.White);
+            }
+            if (IsInCheckmate(ChessPieceTeam.Black))
+            {
+                isGameOver = true;
+                gameOverPopup.ActivateGameOver(ChessPieceTeam.Black);
             }
         }
 
@@ -208,9 +213,7 @@ namespace Chess
         {
             if (!IsInCheck(team))
             {
-                if (team == ChessPieceTeam.White && checkIndicator.text == "White is in check") checkIndicator.text = "";
-                if (team == ChessPieceTeam.Black && checkIndicator.text == "Black is in check") checkIndicator.text = "";
-                return false;
+                if (team != ChessPieceTeam.Black || checkIndicator.text != "White is in check") checkIndicator.text = "";
             }
             else
             {
@@ -270,6 +273,7 @@ namespace Chess
         public void MovePiece(ChessPiece piece, Vector2Int position)
         {
             isPieceMoving = true;
+            piece.SetSortingLayer(1);
             RemovePiece(piece);
             piece.hasMoved = true;
             StartCoroutine(LerpPiece(piece, position));
@@ -286,6 +290,7 @@ namespace Chess
             piece.position = goal;
             if (GetPiece(goal) != null) Destroy(GetPiece(goal).gameObject);
             SetPiece(goal, piece);
+            piece.SetSortingLayer(0);
             isPieceMoving = false;
         }
 

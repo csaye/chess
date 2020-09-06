@@ -11,9 +11,11 @@ namespace Chess
         private ChessBoard chessBoard;
 
         public ChessPieceType type { get { return scriptable.type; } }
-        public ChessPieceTeam team { get { return scriptable.team; } }
+        public ChessPieceTeam team  {get { return scriptable.team; } }
 
         public bool hasMoved {get; set;} = false;
+
+        private SpriteRenderer spriteRenderer;
 
         public Vector2Int position
         {
@@ -33,6 +35,12 @@ namespace Chess
         {
             chessBoard = FindObjectOfType<ChessBoard>();
             chessBoard.InitializePiece(this);
+        }
+
+        public void SetSortingLayer(int layer)
+        {
+            if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sortingOrder = layer;
         }
 
         public Vector2Int[] GetMoves()
