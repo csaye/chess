@@ -16,6 +16,8 @@ namespace Chess
 
         public bool isGameOver {get; private set;} = false;
 
+        public bool isPieceMoving {get; private set;} = false;
+
         private ChessPiece[,] chessBoard = new ChessPiece[8, 8];
 
         private ChessPiece clickedPiece;
@@ -37,6 +39,7 @@ namespace Chess
         public void ClickPiece(ChessPiece piece)
         {
             if (isGameOver) return;
+            if (isPieceMoving) return;
             ClearAllHighlight();
             if (pieceClicked && clickedPiece == piece)
             {
@@ -175,10 +178,21 @@ namespace Chess
             pieceClicked = false;
             ClearAllHighlight();
             MovePiece(clickedPiece, position);
+            StartCoroutine(MakeAIMove());
+        }
+
+        private IEnumerator MakeAIMove()
+        {
+            while (isPieceMoving) yield return null;
+            yield return null;
             CheckCheckmateOfTeam(ChessPieceTeam.Black);
-            if (isGameOver) return;
-            chessAI.TakeTurn();
-            CheckCheckmateOfTeam(ChessPieceTeam.White);
+            if (!isGameOver)
+            {
+                chessAI.TakeTurn();
+                while (isPieceMoving) yield return null;
+                yield return null;
+                CheckCheckmateOfTeam(ChessPieceTeam.White);
+            }
         }
 
         private void CheckCheckmateOfTeam(ChessPieceTeam team)
@@ -255,6 +269,7 @@ namespace Chess
 
         public void MovePiece(ChessPiece piece, Vector2Int position)
         {
+            isPieceMoving = true;
             RemovePiece(piece);
             piece.hasMoved = true;
             StartCoroutine(LerpPiece(piece, position));
@@ -271,6 +286,7 @@ namespace Chess
             piece.position = goal;
             if (GetPiece(goal) != null) Destroy(GetPiece(goal).gameObject);
             SetPiece(goal, piece);
+            isPieceMoving = false;
         }
 
         private void ClearAllHighlight()
