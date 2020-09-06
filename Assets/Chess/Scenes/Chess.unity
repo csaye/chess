@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 145144943}
   - component: {fileID: 145144944}
   m_Layer: 0
-  m_Name: TakenPieces
+  m_Name: TakenPieceDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,6 +413,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bc9f395de8c457c92a58d24d57937f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayChessPieces:
+  - {fileID: 7649786899877152938, guid: fe930f13a46f6403dbd478ba5690b274, type: 3}
+  - {fileID: 5261639683647165658, guid: 464e2bcc550124b7c955e9e271f87544, type: 3}
+  - {fileID: 8456819550644279638, guid: 1d231bff3e7a34764a95dabd8974394a, type: 3}
+  - {fileID: 8258239890139761708, guid: a648143e1e9f0490d9af8a27f8b7371b, type: 3}
+  - {fileID: 4579214886079847358, guid: 3b1926d9d550143b6a26c609f5bb2531, type: 3}
+  - {fileID: 6542354501776026023, guid: 09f74a392c6ba4dfbab45483c8495227, type: 3}
+  - {fileID: 1856411860972822614, guid: 95dc1b930e8e64ec1adbcce45a9af32f, type: 3}
+  - {fileID: 4165969598380094393, guid: 234cdc8fdff9444d8b7ee63bae4ab48d, type: 3}
+  - {fileID: 6420656533929578523, guid: da4bd696133b042eb88f59c53acd4b32, type: 3}
+  - {fileID: 2540799740909780427, guid: ce8234d1a460840a6bcdcb8871f4f2bc, type: 3}
+  - {fileID: 3135540135692611178, guid: 89be92564e28e417ba7ba95748b2284c, type: 3}
+  - {fileID: 1665512471724317676, guid: bcf9413ebbc5b4f07a3d05a1816b4a6c, type: 3}
 --- !u!1001 &177039785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2032,6 +2045,7 @@ MonoBehaviour:
   chessAI: {fileID: 735929882}
   gameOverPopup: {fileID: 1103963337}
   checkIndicator: {fileID: 585790644}
+  takenPieceDisplay: {fileID: 145144944}
 --- !u!1001 &970506605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3279,7 +3293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515803807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 3.5, z: 0}
+  m_LocalPosition: {x: 5, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145144943}
@@ -4495,7 +4509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043023683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 3.5, z: 0}
+  m_LocalPosition: {x: -5, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 145144943}

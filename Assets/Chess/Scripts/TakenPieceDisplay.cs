@@ -10,8 +10,8 @@ namespace Chess
         private Transform whitePiecesTransform;
         private Transform blackPiecesTransform;
 
-        private int whitePieces = 0;
-        private int blackPieces = 0;
+        private int whitePiecesCount = 0;
+        private int blackPiecesCount = 0;
 
         private void Start()
         {
@@ -34,13 +34,28 @@ namespace Chess
         private void AddWhitePiece(int type)
         {
             GameObject piece = displayChessPieces[type];
-            whitePieces++;
+            Vector3 position = (Vector3Int)GetPosition(whitePiecesCount, true);
+            GameObject obj = Instantiate(piece, Vector3.zero, Quaternion.identity, whitePiecesTransform);
+            obj.transform.localPosition = position;
+            whitePiecesCount++;
         }
 
         private void AddBlackPiece(int type)
         {
             GameObject piece = displayChessPieces[6 + type];
-            blackPieces++;
+            Vector3 position = (Vector3Int)GetPosition(blackPiecesCount, false);
+            GameObject obj = Instantiate(piece, Vector3.zero, Quaternion.identity, blackPiecesTransform);
+            obj.transform.localPosition = position;
+            blackPiecesCount++;
+        }
+
+        private Vector2Int GetPosition(int count, bool white)
+        {
+            int x = 0;
+            if (count > 7) x = white ? x - 1 : x + 1;
+            int y = 0;
+            y += count % 8;
+            return new Vector2Int(x, y);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Chess
         [SerializeField] private ChessAI chessAI = null;
         [SerializeField] private GameOverPopup gameOverPopup = null;
         [SerializeField] private TextMeshProUGUI checkIndicator = null;
+        [SerializeField] private TakenPieceDisplay takenPieceDisplay = null;
 
         public bool isGameOver {get; private set;} = false;
 
@@ -288,7 +289,12 @@ namespace Chess
                 yield return null;
             }
             piece.position = goal;
-            if (GetPiece(goal) != null) Destroy(GetPiece(goal).gameObject);
+            ChessPiece takenPiece = GetPiece(goal);
+            if (takenPiece != null)
+            {
+                takenPieceDisplay.AddDisplayPiece(takenPiece);
+                Destroy(takenPiece.gameObject);
+            }
             SetPiece(goal, piece);
             piece.SetSortingLayer(0);
             isPieceMoving = false;
